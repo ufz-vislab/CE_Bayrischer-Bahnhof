@@ -25,11 +25,11 @@ Lot -->
 	Profiles
 	
 Profiles -->
-	case grid_code == 1	:	LoamySoil //add "Trees" if there should be placed trees inside, otherwise leave it out if the trees are generated based on a separate point shape file
-	case grid_code == 2	:	Asphalt
-	case grid_code == 3	:	RedBrickRoad 
-	case grid_code == 4	:	YellowBrickRoad 
-	case grid_code == 5	:	Sand 
+	case grid_code == 1	:	LoamySoil // envimet-code: l
+	case grid_code == 2	:	Asphalt // envimet-code: s
+	case grid_code == 3	:	RedBrickRoad // envimet-code: kk
+	case grid_code == 4	:	YellowBrickRoad // envimet-code: kg
+	case grid_code == 5	:	Sand // envimet-code: sd
 	else : NIL
 	
 LoamySoil -->

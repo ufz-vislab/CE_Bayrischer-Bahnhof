@@ -25,12 +25,12 @@ Lot -->
 	Vegetation
 	
 Vegetation -->
-	case grid_code == 1	:	GreenGround //add "Trees" if there should be placed trees inside, otherwise leave it out if the trees are generated based on a separate point shape file
-	case grid_code == 2	:	Trees GreenGround
-	case grid_code == 3	:	Trees GreenGround
-	case grid_code == 4	:	Bushes GreenGround
-	case grid_code == 5	:	Trees GreenGround
-	case grid_code == 6	:	Trees GreenGround
+	case grid_code == 1	:	GreenGround // envimet-code: xx (gras)
+	case grid_code == 2	:	Trees GreenGround // envimet-code: ds (tree 10m, dense)
+	case grid_code == 3	:	Trees GreenGround // envimet-code: sk (tree 15m, very dense)
+	case grid_code == 4	:	Bushes GreenGround // envimet-code: H2 (hedge, dense)
+	case grid_code == 5	:	Trees GreenGround // envimet-code: T1 (tree 19m, very dense, leafless base)
+	case grid_code == 6	:	Trees GreenGround // envimet-code: l1 (tree 15m, light)
 	else : NIL
 	
 Bushes -->
