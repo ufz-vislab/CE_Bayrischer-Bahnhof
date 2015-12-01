@@ -1,0 +1,58 @@
+/**
+ * File:    rule_trees_test.cga
+ * Created: 7 May 2015 14:29:37 GMT
+ * Author:  helbigc
+ */
+
+version "2014.1"
+
+attr grid_code = 0
+
+@Hidden
+import Plant_Loader			 : "/ESRI.lib/rules/Plants/Plant_Loader.cga" ()		# completely controlled in rules below
+attr ShowTrees		= "Fan"
+
+getTree 	= listRandom("Sugar Maple;California Incense Cedar;Red Hickory;American Chestnut;Western Juniper;American Sycamore;Northern Red Oak;Basswood;Field Elm;Lawson Cypress;Honey Locust;Yellow Poplar;Black Tupelo;")
+getBush		= listRandom("Flannelbush;Shadbush;")
+
+const getDirtmapTexture = fileRandom("/ESRI.lib/assets/General/Dirtmap/dirtmap*.jpg")
+
+
+
+@StartRule
+
+Lot -->
+	Vegetation
+	
+Vegetation -->
+	case grid_code == 1	:	GreenGround //add "Trees" if there should be placed trees inside, otherwise leave it out if the trees are generated based on a separate point shape file
+	case grid_code == 2	:	Trees GreenGround
+	case grid_code == 3	:	Trees GreenGround
+	case grid_code == 4	:	Bushes GreenGround
+	case grid_code == 5	:	Trees GreenGround
+	case grid_code == 6	:	Trees GreenGround
+	else : NIL
+	
+Bushes -->
+	set(Plant_Loader.Representation,ShowTrees)
+	scatter(surface, floor(geometry.area/20), uniform){ Plant_Loader.Generate(getBush)}
+		
+Trees -->
+	set(Plant_Loader.Representation,ShowTrees)
+	scatter(surface, floor(geometry.area/50), uniform){ Plant_Loader.Generate(getTree)}
+	
+GreenGround -->
+	translate(rel, object, 0, 0.01, 0) //translate in Y direction to put the green above the soil/sand
+	alignScopeToGeometry(zUp,0,longest) 
+	setupProjection(0,scope.yx,'1,'1) projectUV(0)
+	texture("/Bayrischer_Bahnhof/data/textures/green_06.jpg")
+	setupProjection(2,scope.yx,'1,'1) projectUV(2) 
+	set(material.dirtmap,getDirtmapTexture) 
+	
+None -->
+	color("#ff0000")
+	
+
+	
+	
+	

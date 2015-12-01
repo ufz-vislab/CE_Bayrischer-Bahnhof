@@ -1,0 +1,77 @@
+/**
+ * File:    rule_grammer_test.cga
+ * Created: 7 May 2015 11:39:55 GMT
+ * Author:  helbigc
+ */
+
+version "2014.1"
+
+attr grid_code = 0
+attr Groundfloor_Height = 5
+attr Upperfloor_Height = 3
+attr Tile_Width = 5
+attr Window_BaseHeight = 0.9
+attr Window_Height = 1.4
+
+wallSidePart_width = 1
+Tile_Side_Width = 1.5
+TextureForWindowsFile = fileRandom("/Bayrischer_Bahnhof/data/textures/window/window.*.tif")
+
+@StartRule
+Lot -->
+	extrude(world.y, grid_code)
+	BuildingMass
+	
+BuildingMass -->
+	comp(f) {side: Facade | top: Roof}
+	
+Roof -->
+	setupProjection(0, scope.xy, '1, '1)
+	projectUV(0)
+	texture("/Bayrischer_Bahnhof/data/textures/roof.tif")
+	
+Facade -->
+	setupProjection(0, scope.xy, ~1, ~0.5)
+	projectUV(0)
+	texture("/Bayrischer_Bahnhof/data/textures/brickwall2.tif")
+	setupProjection(2, scope.xy, scope.sx, scope.sy)
+	projectUV(2)
+	set(material.dirtmap,("/Bayrischer_Bahnhof/data/textures/dirtmap.15.tif"))
+	split(x) {wallSidePart_width: Wall | ~1: Facade_Main | wallSidePart_width: Wall}
+
+
+Facade_Main -->
+	split(y) {Groundfloor_Height: Floor | ~1: Upper_Floors}
+	
+
+Upper_Floors -->
+	split(y) {Upperfloor_Height: Floor}*
+	
+Floor -->
+	split(x) {~Tile_Width : Tile}*
+	
+Tile -->
+	split(x) {Tile_Side_Width: Wall | ~1: Tile_Main | Tile_Side_Width: Wall}
+	
+Tile_Main -->
+	split(y) {Window_BaseHeight: Wall | Window_Height: Window | ~1: Wall}
+	
+	
+Window -->
+	setupProjection(0, scope.xy, '1, '1)
+	projectUV(0)
+	texture(TextureForWindowsFile)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
