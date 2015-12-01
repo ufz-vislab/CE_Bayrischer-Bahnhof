@@ -7,9 +7,9 @@
 version "2014.1"
 
 attr grid_code = 0
-attr Groundfloor_Height = 5
-attr Upperfloor_Height = 3
-attr Tile_Width = 5
+attr Groundfloor_Height = rand(3,5)
+attr Upperfloor_Height = rand(3,4)
+attr Tile_Width = rand(4,5)
 attr Window_BaseHeight = 0.9
 attr Window_Height = 1.4
 
@@ -23,12 +23,16 @@ Lot -->
 	BuildingMass
 	
 BuildingMass -->
-	comp(f) {side: Facade | top: Roof}
-	
+	comp(f) {side: Facade | top: Top}
+
+Top -->
+	60% : roofGable(rand(30,45)) Roof
+	25% : roofHip(rand(30,40)) Roof
+	else : Roof
+
+import Roof_Textures:"/ESRI.lib/rules/Roofs/Roof_Textures.cga"
 Roof -->
-	setupProjection(0, scope.xy, '1, '1)
-	projectUV(0)
-	texture("/Bayrischer_Bahnhof/data/textures/roof.tif")
+	Roof_Textures.Generate
 	
 Facade -->
 	setupProjection(0, scope.xy, ~1, ~0.5)
@@ -58,6 +62,10 @@ Tile_Main -->
 	
 	
 Window -->
+	extrude(-.12)
+	comp(f) {top: Glass | side: Tile}
+
+Glass -->
 	setupProjection(0, scope.xy, '1, '1)
 	projectUV(0)
 	texture(TextureForWindowsFile)
