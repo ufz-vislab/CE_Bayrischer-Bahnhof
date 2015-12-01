@@ -45,7 +45,7 @@ GreenGround -->
 	translate(rel, object, 0, 0.01, 0) //translate in Y direction to put the green above the soil/sand
 	alignScopeToGeometry(zUp,0,longest) 
 	setupProjection(0,scope.yx,'1,'1) projectUV(0)
-	texture("/Bayrischer_Bahnhof/data/textures/green_06.jpg")
+	texture("data/textures/green_06.jpg")
 	setupProjection(2,scope.yx,'1,'1) projectUV(2) 
 	set(material.dirtmap,getDirtmapTexture) 
 	

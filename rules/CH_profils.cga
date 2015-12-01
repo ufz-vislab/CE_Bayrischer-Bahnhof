@@ -35,35 +35,35 @@ Profiles -->
 LoamySoil -->
 	alignScopeToGeometry(zUp,0,longest) 
 	setupProjection(0,scope.yx,'0.05,'0.05) projectUV(0)
-	texture("/Bayrischer_Bahnhof/data/textures/loamy-soil.jpg")
+	texture("data/textures/loamy-soil.jpg")
 	setupProjection(2,scope.yx,'1,'1) projectUV(2) 
 	set(material.dirtmap,getDirtmapTexture) 
 
 Asphalt -->
 	alignScopeToGeometry(zUp,0,longest) 
 	setupProjection(0,scope.yx,'1,'1) projectUV(0)
-	texture("/Bayrischer_Bahnhof/data/textures/asphalt_14x14m.jpg")
+	texture("data/textures/asphalt_14x14m.jpg")
 	setupProjection(2,scope.yx,'1,'1) projectUV(2) 
 	set(material.dirtmap,getDirtmapTexture) 
 	
 RedBrickRoad -->
 	alignScopeToGeometry(zUp,0,longest) 
 	setupProjection(0,scope.yx,'0.05,'0.05) projectUV(0)
-	texture("/Bayrischer_Bahnhof/data/textures/red-brick-texture.jpg")
+	texture("data/textures/red-brick-texture.jpg")
 	setupProjection(2,scope.yx,'1,'1) projectUV(2) 
 	set(material.dirtmap,getDirtmapTexture) 
 	
 YellowBrickRoad -->
 	alignScopeToGeometry(zUp,0,longest) 
 	setupProjection(0,scope.yx,'0.1,'0.1) projectUV(0)
-	texture("/Bayrischer_Bahnhof/data/textures/yellow-brick-texture.jpg")
+	texture("data/textures/yellow-brick-texture.jpg")
 	setupProjection(2,scope.yx,'1,'1) projectUV(2) 
 	set(material.dirtmap,getDirtmapTexture)
 	
 Sand -->
 	alignScopeToGeometry(zUp,0,longest) 
 	setupProjection(0,scope.yx,'0.5,'0.5) projectUV(0)
-	texture("/Bayrischer_Bahnhof/data/textures/sand.jpg")
+	texture("data/textures/sand.jpg")
 	setupProjection(2,scope.yx,'1,'1) projectUV(2) 
 	set(material.dirtmap,getDirtmapTexture)
 	

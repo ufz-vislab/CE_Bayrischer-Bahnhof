@@ -15,7 +15,7 @@ attr Window_Height = 1.4
 
 wallSidePart_width = 1
 Tile_Side_Width = 1.5
-TextureForWindowsFile = fileRandom("/Bayrischer_Bahnhof/data/textures/window/window.*.tif")
+TextureForWindowsFile = fileRandom("data/textures/window/window.*.tif")
 
 @StartRule
 Lot -->
@@ -37,10 +37,10 @@ Roof -->
 Facade -->
 	setupProjection(0, scope.xy, ~1, ~0.5)
 	projectUV(0)
-	texture("/Bayrischer_Bahnhof/data/textures/brickwall2.tif")
+	texture("data/textures/brickwall2.tif")
 	setupProjection(2, scope.xy, scope.sx, scope.sy)
 	projectUV(2)
-	set(material.dirtmap,("/Bayrischer_Bahnhof/data/textures/dirtmap.15.tif"))
+	set(material.dirtmap,("data/textures/dirtmap.15.tif"))
 	split(x) {wallSidePart_width: Wall | ~1: Facade_Main | wallSidePart_width: Wall}
 
 
