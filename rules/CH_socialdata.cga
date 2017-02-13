@@ -1,0 +1,67 @@
+/**
+ * Created: 10 Februar 2017 
+ * Author:  helbigc
+ */
+
+version "2016.1"
+
+
+attr AnzGeb = 0
+attr EWV00_14_d = 0
+attr SGBIIA14_d = 0
+attr opacityvalue = 0.8
+attr color1 = "#FFFF00"
+attr color2 = "#FBB117"
+attr color3 = "#E8A317"
+attr color4 = "#F88017"
+attr colorNoData = "#bbbbbb"
+
+
+
+@StartRule
+Lot -->
+	SGBEmpfaenger
+	Einwohnerentwicklung
+
+          
+	
+SGBEmpfaenger -->
+	case (SGBIIA14_d >= 0): extrude(world.y, SGBIIA14_d) comp(f) {side: SGBEmpfaenger_Color | bottom: SGBEmpfaenger_ColorBottom} 
+	else : extrude(world.y, 0) SGBEmpfaenger_Color
+	
+SGBEmpfaenger_Color -->
+	case (SGBIIA14_d >= 0) && (SGBIIA14_d < 5)	:		color(color1) set(material.opacity,opacityvalue) 
+	case (SGBIIA14_d >= 5) && (SGBIIA14_d < 10)	:		color(color2) set(material.opacity,opacityvalue) 
+	case (SGBIIA14_d >= 10) && (SGBIIA14_d < 15)	:	color(color3) set(material.opacity,opacityvalue)
+	case (SGBIIA14_d >= 15):							color(color4) set(material.opacity,opacityvalue)
+	else : color(colorNoData)
+	
+SGBEmpfaenger_ColorBottom -->
+	case (SGBIIA14_d >= 0) && (SGBIIA14_d < 5)	:		color(color1)
+	case (SGBIIA14_d >= 5) && (SGBIIA14_d < 10)	:		color(color2) 
+	case (SGBIIA14_d >= 10) && (SGBIIA14_d < 15)	:	color(color3)
+	case (SGBIIA14_d >= 15):							color(color4)
+	else : color(colorNoData)
+	
+Einwohnerentwicklung -->
+	case (EWV00_14_d >= -2000) && (EWV00_14_d < 0): primitiveCone(20,10, abs(EWV00_14_d)) color("#ff0000") 
+	case (EWV00_14_d > 0) && (EWV00_14_d < 2000): primitiveCone(20,10, EWV00_14_d) color("#00ff00") 
+	else : NIL
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
